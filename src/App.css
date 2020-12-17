@@ -1,0 +1,27 @@
+body {
+  background: #202124;
+}
+.addButton {
+  background-color: #bd9e01;
+  border: yellow;
+}
+.navbar {
+  background: #2a2c2f;
+}
+nav a {
+  color: #39ae3fde;
+}
+nav a:hover {
+  color: rgb(102, 255, 47);
+}
+.searchBox {
+  color: gray !important;
+}
+.searchBox:focus {
+  background: #323232;
+  color: gray;
+}
+.form-control {
+  color: #e8eaed !important;
+  border: 1px solid #4f4d4d;
+}

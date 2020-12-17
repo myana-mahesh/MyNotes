@@ -1,0 +1,22 @@
+.form-control {
+  background: #323232;
+  color: white;
+}
+input[type="text"]:focus {
+  background-color: #323232;
+  border: 1px solid #ced4da;
+  color: white;
+}
+#exampleFormControlTextarea1:focus {
+  background-color: #323232;
+  border: unset;
+  color: white;
+}
+.addButton {
+  background-color: #39ae3f;
+}
+
+.addButton:hover {
+  background-color: #39ae3fde;
+  border: 1px solid rgb(102, 255, 47);
+}
