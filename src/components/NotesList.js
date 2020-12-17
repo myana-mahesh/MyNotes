@@ -166,9 +166,7 @@ function NotesList(props) {
     }   
  
     return (
-        <div className="">
-            
-                
+        <div>   
             {props.notesArryay.length > 1 ?
                 (<div className="container">
                     <div className="row">
@@ -257,7 +255,7 @@ function NotesList(props) {
                                         <p className="card-text" >{notes.noteDetail}</p>
                                     </div>  
                                 </div>
-                                </div>)}
+                            </div>)}
                         </div>
                     </div> :
                     <div className="content container-fluid">
@@ -266,18 +264,15 @@ function NotesList(props) {
                                 notes.title.includes(props.searchText) ?
                                     <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(index)}><div className="card" key={index} style={{ height:"100%"}}>
                                         <div className="card-body">
-                                        <h5 className="card-title">{notes.title}</h5>
-                                        <p className="card-text" >{notes.noteDetail}</p>
-                                    </div>  
+                                            <h5 className="card-title">{notes.title}</h5>
+                                            <p className="card-text" >{notes.noteDetail}</p>
+                                        </div>  
                                     </div>
-                                    </div>:<></>
-                                
-                            )}
-                            
+                            </div>:<></>   
+                            )}   
                         </div>
                     </div>
-            }
-            
+            }  
         </div>
     );
 }
