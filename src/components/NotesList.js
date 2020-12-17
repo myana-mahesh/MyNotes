@@ -261,7 +261,7 @@ function NotesList(props) {
                     <div className="content container-fluid">
                         <div className="row mt-3" >
                             {props.notesArryay.map((notes, index) => 
-                                notes.title.includes(props.searchText) || notes.noteDetail.includes(props.searchText)?
+                                notes.noteDetail.includes(props.searchText) || notes.title.includes(props.searchText)?
                                     <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(index)}><div className="card" key={index} style={{ height:"100%"}}>
                                         <div className="card-body">
                                             <h5 className="card-title">{notes.title}</h5>
