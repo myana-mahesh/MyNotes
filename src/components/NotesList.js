@@ -49,7 +49,7 @@ function NotesList(props) {
             noteDetail: detailRef.current.innerHTML,
             date: new Date()
         }
-        props.passCurrNote(currIndex, tempNote, true)
+        props.passCurrNote(currNote, tempNote, true)
         setShow(false);
     }
 

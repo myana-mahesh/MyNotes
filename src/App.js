@@ -48,7 +48,7 @@ function App() {
       newNotes = notes;
       let ind;
       newNotes.map((note, index) => {
-        if (note.title === currNote.title && notes.noteDetail === currNote.noteDetail) { 
+        if (((note.title).localeCompare(currNote.title)==0) && ((note.noteDetail).localeCompare(currNote.noteDetail)==0)) { 
           ind = index;
         }
       })
@@ -66,9 +66,20 @@ function App() {
         }
       })
     }
+    else {
+      newFilterdNotes = filterdNotes;
+      let ind;
+      newFilterdNotes.map((note, index) => {
+        if (((note.title).localeCompare(currNote.title)==0) && ((note.noteDetail).localeCompare(currNote.noteDetail)==0)) { 
+          ind = index;
+        }
+      })
+      newFilterdNotes.splice(ind, 1);
+    }
     setNotes(newNotes)
     setFilterdNotes(newFilterdNotes)
   }
+
 
   const getFilterdNotes = (filterdNotes) => {
     console.log(filterdNotes)
