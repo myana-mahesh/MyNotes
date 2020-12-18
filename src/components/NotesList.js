@@ -270,7 +270,7 @@ function NotesList(props) {
                                         </div>  
                                     </div>
                             </div>:<></>   
-                            )}   
+                             )}   
                         </div>
                     </div>
             }  
