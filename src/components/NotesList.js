@@ -15,7 +15,6 @@ function NotesList(props) {
     const [sortValue, setSortValue] = useState('');
     const [filterValue, setFilterValue] = useState('');
     const [startDate, setStartDate] = useState(new Date());
-    const [weekPicker, setWeekPicker] = useState(false);
     const [monthPicker, setMonthPicker] = useState(false);
     const [yearPicker, setYearPicker] = useState(false);
     const [dateFormat, setDateFormat] = useState("dd mm yyyy");
@@ -76,22 +75,24 @@ function NotesList(props) {
     const handleFilter = (event) => {
         setFilterValue(event.target.value);
         if (event.target.value === "week") {
-            setDateFormat("dd MM yyyy")
+            setDateFormat("dd/MM/yyyy")
+            console.log(startDate)
             setMonthPicker(false);
-            setWeekPicker(true);
             setYearPicker(false);
+            setStartDate(new Date());
+            
         }
         else if (event.target.value === "month") {
             setDateFormat("MMMM yyyy")
             setMonthPicker(true);
-            setWeekPicker(false);
             setYearPicker(false);
+            setStartDate(new Date());
         }
         else if (event.target.value === "year") {
             setDateFormat("yyyy")
             setMonthPicker(false);
-            setWeekPicker(false);
             setYearPicker(true);
+            setStartDate(new Date());
         }
         else {
             setFilterUsed(false);
@@ -100,7 +101,6 @@ function NotesList(props) {
     }
 
     const handleCalendarClose = () => {
-        console.log(startDate);
         if (filterValue == "week") {
             filterByWeek();
         }
@@ -116,12 +116,15 @@ function NotesList(props) {
 
     const filterByWeek = () => {
         let tempAllNotes = [];
-        const lastDate = new Date(startDate);
-        lastDate.setDate(lastDate.getDate() + 6)
-         props.notesArryay.map((n) => {
-            if (moment(n.date).format('DD MM yyyy') >= moment(startDate).format('DD MM yyyy') && moment(n.date).format('DD MM yyyy') <= moment(lastDate).format('DD MM yyyy')) {
+        let lastDate = new Date(startDate);
+        lastDate.setDate(lastDate.getDate() + 7)
+        let newStartDate = startDate;
+        newStartDate.setDate(newStartDate.getDate() - 1);
+        props.notesArryay.map((n) => {
+             if ((n.date >=newStartDate) &&(n.date<=lastDate)) {
                 tempAllNotes.push(n);
-            }
+            } 
+            
         })
         props.passFilterdNotes(tempAllNotes);
         setFilterUsed(true);
@@ -186,7 +189,7 @@ function NotesList(props) {
                                         <option value="year">Year</option>
                                     </select>
                             </label>
-                            { filterValue?
+                            {filterValue ?
                                 <DatePicker
                                     style={{ float: "right" }}
                                     ref={datePickerRef}
