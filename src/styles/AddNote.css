@@ -20,3 +20,23 @@ input[type="text"]:focus {
   background-color: #39ae3fde;
   border: 1px solid rgb(102, 255, 47);
 }
+.datePicker {
+  background: #202124;
+  color: white;
+  border: 1px solid #4b4d52;
+  padding: 0.5rem;
+}
+.react-datepicker__input-container input {
+  background: #2b2c2f;
+  border: none;
+  padding: 5px;
+  color: #e8eaed;
+}
+.test {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .addButton {
+    float: right;
+  }
+}

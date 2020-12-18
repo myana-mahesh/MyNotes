@@ -10,13 +10,18 @@ function App() {
   const [filterdNotes, setFilterdNotes] = useState([]); 
   const [searchText, setSearchText] = useState('');
   const getNote = (note) => {
-    console.log("n from app"+note.title)
+    
+    console.log("n from app" + note.startDate)
+    let date = new Date();
+    if(note.startDate !== "" || notes.startDate===null){
+      date = note.startDate;
+    }
     let n = {
       title: note.title,
       noteDetail: note.noteDetail,
-      date: new Date()
+      date: date
     };
-    setFilterdNotes([...filterdNotes,n])
+    setFilterdNotes([...notes,n])
     setNotes([...notes, n]);
     setSearchText("")
   }

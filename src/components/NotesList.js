@@ -81,17 +81,20 @@ function NotesList(props) {
             setWeekPicker(true);
             setYearPicker(false);
         }
-        if (event.target.value === "month") {
+        else if (event.target.value === "month") {
             setDateFormat("MMMM yyyy")
             setMonthPicker(true);
             setWeekPicker(false);
             setYearPicker(false);
         }
-        if (event.target.value === "year") {
+        else if (event.target.value === "year") {
             setDateFormat("yyyy")
             setMonthPicker(false);
             setWeekPicker(false);
             setYearPicker(true);
+        }
+        else {
+            setFilterUsed(false);
         }
         
     }
@@ -107,9 +110,7 @@ function NotesList(props) {
         else if (filterValue === 'month') {
             filterByMonth();
         }
-        else {
-            filterUsed(false);
-        }
+        
         
     }
 
@@ -238,7 +239,7 @@ function NotesList(props) {
                     <div className="row mt-3" >
                         {props.notesArryay.map((notes, index) => <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(index)}><div className="card" key={index} style={{ height:"100%"}}>
                                 <div className="card-body">
-                                <h5 className="card-title">{notes.title}</h5>
+                                <h5 className="card-title" className="mb-4"><span style={{float:'left',fontWeight:'450'}}>{notes.title}</span>  <span style={{float:"right",fontSize:'12px',fontWeight:'100',color:'rgb(160 160 160)'}}>created on:{ moment(notes.date).format("DD/MM/yyyy")}</span></h5>
                                 <p className="card-text" >{notes.noteDetail}</p>
                                 </div>  
                         </div></div>)}
@@ -251,7 +252,7 @@ function NotesList(props) {
                             {props.filterdNotes.map((notes, index) =>
                                 <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(index)}><div className="card" key={index} style={{ height: "100%" }}>
                                     <div className="card-body">
-                                        <h5 className="card-title">{notes.title}</h5>
+                                        <h5 className="card-title" className="mb-4"><span style={{float:'left',fontWeight:'450'}}>{notes.title}</span>  <span style={{float:"right",fontSize:'12px',fontWeight:'100',color:'rgb(160 160 160)'}}>created on:{ moment(notes.date).format("DD/MM/yyyy")}</span></h5>
                                         <p className="card-text" >{notes.noteDetail}</p>
                                     </div>  
                                 </div>
@@ -264,7 +265,7 @@ function NotesList(props) {
                                 notes.noteDetail.includes(props.searchText) || notes.title.includes(props.searchText)?
                                     <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(index)}><div className="card" key={index} style={{ height:"100%"}}>
                                         <div className="card-body">
-                                            <h5 className="card-title">{notes.title}</h5>
+                                            <h5 className="card-title" className="mb-4"><span style={{float:'left',fontWeight:'450'}}>{notes.title}</span>  <span style={{float:"right",fontSize:'12px',fontWeight:'100',color:'rgb(160 160 160)'}}>created on:{ moment(notes.date).format("DD/MM/yyyy")}</span></h5>
                                             <p className="card-text" >{notes.noteDetail}</p>
                                         </div>  
                                     </div>
