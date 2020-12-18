@@ -26,15 +26,19 @@ function App() {
     setSearchText("")
   }
 
-  const getUpdatedNote = (editedIndex, editedNote, isDeleted) => {
+  const getUpdatedNote = (currNote, editedNote, isDeleted) => {
     let newNotes = []
+
     if (!isDeleted) {
-      editedNote.date = notes[editedIndex].date;
+      editedNote.date = currNote.date;
     }
+  
     if (!isDeleted) {
       newNotes = notes.map((note, index) => {
-        if (index === editedIndex) {
+        console.log(note.title,note.noteDetail)
+        if (((note.title).localeCompare(currNote.title)==0) && ((note.noteDetail).localeCompare(currNote.noteDetail)==0)) {
           return editedNote;
+        
         } else {
           return note;
         }
@@ -42,9 +46,28 @@ function App() {
     }
     else {
       newNotes = notes;
-      newNotes.splice(editedIndex, 1);
+      let ind;
+      newNotes.map((note, index) => {
+        if (note.title === currNote.title && notes.noteDetail === currNote.noteDetail) { 
+          ind = index;
+        }
+      })
+      newNotes.splice(ind, 1);
+    }
+    let newFilterdNotes=[];
+    if (!isDeleted) { 
+      newFilterdNotes=filterdNotes.map((note, index) => {
+        if (((note.title).localeCompare(currNote.title)==0) && ((note.noteDetail).localeCompare(currNote.noteDetail)==0)) {
+          console.log(note);
+          return editedNote;
+        } 
+        else {
+          return note;
+        }
+      })
     }
     setNotes(newNotes)
+    setFilterdNotes(newFilterdNotes)
   }
 
   const getFilterdNotes = (filterdNotes) => {

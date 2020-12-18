@@ -23,6 +23,7 @@ function NotesList(props) {
     let detailRef = React.createRef();
     let datePickerRef = React.createRef();
 
+    let searchList=[]
     const handleClose = () => {
         handleSave();
         setShow(false)
@@ -34,9 +35,9 @@ function NotesList(props) {
         setShowAlert(false);
     }
     
-    const showModal = (index) => { 
-        setCurrIndex(index);
-        setCurrNote(props.notesArryay[index]);
+    const showModal = (note) => { 
+        setCurrIndex(1);
+        setCurrNote(note);    
         console.log(currNote)
         setShow(true);
     }
@@ -162,7 +163,8 @@ function NotesList(props) {
             date: new Date()
         }
         if (tempNote.title !== "" || tempNote.noteDetail !== "") {
-            props.passCurrNote(currIndex, tempNote, false)
+            console.log(currNote)
+            props.passCurrNote(currNote, tempNote, false)
         }
         else if(tempNote.title === "" && tempNote.noteDetail === ""){
             handleDelete();
@@ -241,7 +243,7 @@ function NotesList(props) {
             {   props.notesArryay.length>=0 &&  !filterUsed && props.searchText=="" ?(
                 <div className="content container-fluid">
                     <div className="row mt-3" >
-                        {props.notesArryay.map((notes, index) => <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(index)}><div className="card" key={index} style={{ height:"100%"}}>
+                        {props.notesArryay.map((notes, index) => <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(notes)}><div className="card" key={index} style={{ height:"100%"}}>
                                 <div className="card-body">
                                 <h5 className="card-title" className="mb-4"><span style={{float:'left',fontWeight:'450'}}>{notes.title}</span>  <span style={{float:"right",fontSize:'12px',fontWeight:'100',color:'rgb(160 160 160)'}}>created on:{ moment(notes.date).format("DD/MM/yyyy")}</span></h5>
                                 <p className="card-text" >{notes.noteDetail}</p>
@@ -254,7 +256,7 @@ function NotesList(props) {
                 <div className="content container-fluid">
                         <div className="row mt-3" >
                             {props.filterdNotes.map((notes, index) =>
-                                <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(index)}><div className="card" key={index} style={{ height: "100%" }}>
+                                <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(notes)}><div className="card" key={index} style={{ height: "100%" }}>
                                     <div className="card-body">
                                         <h5 className="card-title" className="mb-4"><span style={{float:'left',fontWeight:'450'}}>{notes.title}</span>  <span style={{float:"right",fontSize:'12px',fontWeight:'100',color:'rgb(160 160 160)'}}>created on:{ moment(notes.date).format("DD/MM/yyyy")}</span></h5>
                                         <p className="card-text" >{notes.noteDetail}</p>
@@ -265,16 +267,16 @@ function NotesList(props) {
                     </div> :
                     <div className="content container-fluid">
                         <div className="row mt-3" >
-                            {props.notesArryay.map((notes, index) => 
-                                notes.noteDetail.includes(props.searchText) || notes.title.includes(props.searchText)?
-                                    <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(index)}><div className="card" key={index} style={{ height:"100%"}}>
+                            {props.notesArryay.map((notes, index) =>
+                                notes.noteDetail.includes(props.searchText) || notes.title.includes(props.searchText) ?
+                                    <div key={index} className=" col-lg-3 col-md-4 col-12 mb-4 justify-content-center " onClick={() => showModal(notes)}><div className="card" key={index} style={{ height:"100%"}}>
                                         <div className="card-body">
                                             <h5 className="card-title" className="mb-4"><span style={{float:'left',fontWeight:'450'}}>{notes.title}</span>  <span style={{float:"right",fontSize:'12px',fontWeight:'100',color:'rgb(160 160 160)'}}>created on:{ moment(notes.date).format("DD/MM/yyyy")}</span></h5>
                                             <p className="card-text" >{notes.noteDetail}</p>
                                         </div>  
                                     </div>
-                            </div>:<></>   
-                             )}   
+                                    </div> : <></>
+                            )}   
                         </div>
                     </div>
             }  
