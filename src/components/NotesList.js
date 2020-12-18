@@ -55,19 +55,20 @@ function NotesList(props) {
     const handleSort = (event) => {
         setSortValue(event.target.value);
         let Allnotes = props.notesArryay;
-        if (event.target.value === "oldest first") {
-            Allnotes.sort((a, b) => a.date < b.date ? 1 : -1);
+        console.log(Allnotes)
+         if (event.target.value === "oldest first") {
+            Allnotes.sort((a, b) => a.date.getTime() > b.date.getTime() ? 1 : -1);
         }
         else {
-            Allnotes.sort((a, b) => a.date > b.date ? 1 : -1);
+            Allnotes.sort((a, b) => a.date.getTime() < b.date.getTime() ? 1 : -1);
         }
         let Allnotes2 = props.filterdNotes;
         if (event.target.value === "oldest first") {
-            Allnotes2.sort((a, b) => a.date < b.date ? 1 : -1);
+            Allnotes2.sort((a, b) => a.date.getTime() > b.date.getTime() ? 1 : -1);
         }
         else {
-            Allnotes2.sort((a, b) => a.date > b.date ? 1 : -1);
-        }
+            Allnotes2.sort((a, b) => a.date.getTime() < b.date.getTime() ? 1 : -1);
+        } 
         
         
     }

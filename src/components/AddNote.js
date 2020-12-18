@@ -7,7 +7,7 @@ import '../styles/AddNote.css';
 export default function AddNote(props) {
     const [title, setTitle] = useState("");
     const [noteDetail, setNoteDetail] = useState("");
-    const [startDate, setStartDate] = useState("");
+    const [startDate, setStartDate] = useState(new Date());
 
     const handleClick=(event)=>{
         event.preventDefault();
@@ -17,7 +17,7 @@ export default function AddNote(props) {
             console.log(startDate)
             setTitle("");
             setNoteDetail("");
-            setStartDate();
+            setStartDate(new Date());
         }
             
     }

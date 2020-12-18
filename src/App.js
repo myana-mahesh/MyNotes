@@ -13,7 +13,7 @@ function App() {
     
     console.log("n from app" + note.startDate)
     let date = new Date();
-    if(note.startDate !== "" || notes.startDate===null){
+    if (note.startDate !== "" || notes.startDate === null || notes.startDate ===undefined){
       date = note.startDate;
     }
     let n = {
@@ -27,7 +27,10 @@ function App() {
   }
 
   const getUpdatedNote = (editedIndex, editedNote, isDeleted) => {
-    let newNotes=[]
+    let newNotes = []
+    if (!isDeleted) {
+      editedNote.date = notes[editedIndex].date;
+    }
     if (!isDeleted) {
       newNotes = notes.map((note, index) => {
         if (index === editedIndex) {
